@@ -101,6 +101,11 @@ a{
     font-size: 18px;
     transition: all 0.2s ease-in-out;
 }
+.radio-group label.active {
+    background-color: #0F2F48;
+    color: white;
+    border-color: #0F2F48;
+}
 .radio-group label:hover {
     color: #FFF;
     border: 1px solid #0F2F48;

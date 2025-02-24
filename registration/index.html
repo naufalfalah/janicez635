@@ -4,9 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration</title>
+	<!-- EXTERNAL CSS -->
     <link rel="stylesheet" type="text/css" href="style.css">
+	<!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FONT AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+		integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
 <div class="container-fluid bg">
     <div class="container-fluid">
@@ -14,7 +21,7 @@
             <div class="col-lg-6 custom-css">
                 <div class="tabs-wrapper">
                     <div class="container p-0" id="form-container">
-                        <form action="../submit.php" method="POST">
+                        <form action="../submit.php" id="myForm" method="POST">
                             <!-- Steps -->
                             <div id="step1">
                                 <h2>Household Scheme</h2>
@@ -39,7 +46,7 @@
                                         <input type="radio" name="option" value="Yourself + orphaned sibling(s)"> Yourself + orphaned sibling(s)
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn1" onclick="showStep2()" disabled>Next</button>
                             </div>
 
                             <div id="step2" style="display: none;">
@@ -56,9 +63,10 @@
                                         <input type="radio" name="citizenship" value="No Singapore Citizen or PR"> No, no Singapore Citizens or Permanent Residents
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep1()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn2" onclick="showStep3()" disabled>Next</button>
                             </div>
+
                             <div id="step3" style="display: none;">
                                 <h2>Age Requirement</h2>
                                 <p>Are you and/or your co-applicants of eligible age?</p>
@@ -73,9 +81,10 @@
                                         <input type="radio" name="age" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep2()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn3" onclick="showStep4()" disabled>Next</button>
                             </div>
+
                             <div id="step4" style="display: none;">
                                 <h2>Monthly Household Income</h2>
                                 <p>Is your combined household income below $16,000?</p>
@@ -87,15 +96,16 @@
                                         <input type="radio" name="income" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1) " style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep3()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn4" onclick="showStep5()" disabled>Next</button>
                             </div>
+
                             <div id="step5" style="display: none;">
                                 <h2>HDB Ownership Status</h2>
                                 <p>Do you or any co-applicants currently own an HDB flat?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="5">
-                                        <input type="radio" name="hdb" value="MOP completed"> Yes, MOP completed
+                                        <input type="radio" name="hdb" value="Yes, MOP completed"> Yes, MOP completed
                                     </label>
                                     <label class="step-option" data-step="5">
                                         <input type="radio" name="hdb" value="Do not own any HDB"> No, do not own any HDB
@@ -104,9 +114,10 @@
                                         <input type="radio" name="hdb" value="Still within MOP"> Yes, still within MOP
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep4()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn5" onclick="showStep6()" disabled>Next</button>
                             </div>
+
                             <div id="step6" style="display: none;">
                                 <h2>Private Property Ownership in the Last 30 Months</h2>
                                 <p>Have you or any co-applicants owned or disposed of any private property in the past 30 months?</p>
@@ -118,9 +129,10 @@
                                         <input type="radio" name="private_property" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep5()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn6" onclick="showStep7()" disabled>Next</button>
                             </div>
+
                             <div id="step7" style="display: none;">
                                 <h2>First-Time Applicant</h2>
                                 <p>Is this your first application for an HDB/EC property?</p>
@@ -132,21 +144,26 @@
                                         <input type="radio" name="first_time" value="No">No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep + 1)" style="display: none;">Next</button>
+                                <button class="btn btn-secondary mt-3" onclick="showStep6()">Previous</button>
+                                <button class="btn btn-secondary mt-3" id="nextBtn7" onclick="showStep8()" disabled>Next</button>
                             </div>
+
                             <div id="step8" style="display: none;">
                                 <h2>Contact Information</h2>
                                 <p>Please enter your contact details</p>
                                 <label>Full Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+                                <input type="text" name="name" id="input_name" data-id="name" class="form-control" placeholder="Enter your full name" required>
+
                                 <label>Phone Number</label>
-                                <input id="form_field" type="number" name="phone" class="form-control" placeholder="+65" required>
+                                <input type="tel" name="phone" id="input_phone" data-id="phone" class="form-control" placeholder="+65" maxlength="8" oninput="validatePhone()" required>
+
                                 <label>Email Address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-                                <button class="btn btn-secondary mt-3" onclick="showStep(currentStep - 1)">Previous</button>
-                                <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                <input type="email" name="email" id="input_email" data-id="email" class="form-control" placeholder="Enter your email" oninput="validateEmail()" required>
+
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep7()">Previous</button>
+                                <button type="submit" class="btn btn-primary mt-3" id="submitBtn" onclick="submitForm()" disabled>Submit</button>
                             </div>
+
                             <!-- Progress Bar -->
                             <div class="progress mt-4">
                                 <div id="progress-bar" class="progress-bar" style="width: 12.5%;"></div>
@@ -173,8 +190,195 @@
     </div>
 </div>
 
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+
 <!-- Popup -->
 <script>
+	function hideAllSteps() {
+		document.querySelectorAll('[id^="step"]').forEach(step => {
+			step.style.display = 'none';
+		});
+	}
+
+	function showStep1() {
+		hideAllSteps();
+		document.getElementById('step1').style.display = 'block';
+        updateProgressBar(1)
+	}
+
+	function showStep2() {
+		hideAllSteps();
+		document.getElementById('step2').style.display = 'block';
+        updateProgressBar(2)
+	}
+
+	function showStep3() {
+		hideAllSteps();
+		document.getElementById('step3').style.display = 'block';
+        updateProgressBar(3)
+	}
+
+	function showStep4() {
+		hideAllSteps();
+		document.getElementById('step4').style.display = 'block';
+        updateProgressBar(4)
+	}
+
+	function showStep5() {
+		hideAllSteps();
+		document.getElementById('step5').style.display = 'block';
+        updateProgressBar(5)
+	}
+
+	function showStep6() {
+		hideAllSteps();
+		document.getElementById('step6').style.display = 'block';
+        updateProgressBar(6)
+	}
+
+	function showStep7() {
+		hideAllSteps();
+		document.getElementById('step7').style.display = 'block';
+        updateProgressBar(7)
+	}
+
+	function showStep8() {
+		hideAllSteps();
+		document.getElementById('step8').style.display = 'block';
+        updateProgressBar(8)
+	}
+
+
+
+	document.querySelectorAll('input[name="option"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn1').disabled = false;
+		});
+	});
+
+	document.querySelectorAll('input[name="citizenship"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn2').disabled = false;
+		});
+	});
+
+	document.querySelectorAll('input[name="age"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn3').disabled = false;
+		});
+	});
+
+	document.querySelectorAll('input[name="income"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn4').disabled = false;
+		});
+	});
+
+	document.querySelectorAll('input[name="hdb"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn5').disabled = false;
+		});
+	});
+
+	document.querySelectorAll('input[name="private_property"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn6').disabled = false;
+		});
+	});
+	document.querySelectorAll('input[name="private_property"]').forEach(radio => {
+		radio.addEventListener('change', () => {
+			document.getElementById('nextBtn7').disabled = false;
+		});
+	});
+
+
+	document.querySelectorAll('input[name="first_applications"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            document.getElementById('nextBtn7').disabled = false;
+        });
+    });
+
+    document.querySelectorAll('#step8 input').forEach(input => {
+        input.addEventListener('input', () => {
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let address = document.getElementById('address').value.trim();
+            document.getElementById('submitBtn').disabled = !(name && email && address);
+        });
+    });
+
+	function submitForm() {
+	//	window.location.replace('../thank-you/index.html')
+	//	alert('form Submited')
+	}
+    
+	document.querySelectorAll('.radio-group label').forEach(label => {
+		label.addEventListener('click', function () {
+			let parentGroup = this.closest('.radio-group');
+	
+			// Remove active class from all labels inside this radio group
+			parentGroup.querySelectorAll('label').forEach(lbl => lbl.classList.remove('active'));
+	
+			// Add active class to the clicked label
+			this.classList.add('active');
+	
+			// Enable next button
+			let step = this.closest('.container').id;
+			let nextBtn = step === "step1" ? "nextBtn1" : step === "step2" ? "nextBtn2" : "submitBtn";
+			document.getElementById(nextBtn).disabled = false;
+		});
+	});
+	
+	// Function to restore active class on back navigation
+	function restoreActiveClass() {
+		document.querySelectorAll('.radio-group input[type="radio"]').forEach(radio => {
+			if (radio.checked) {
+				let label = radio.closest('label');
+				if (label) {
+					label.classList.add('active');
+				}
+			}
+		});
+	}
+	
+	// Call restoreActiveClass() when going back
+	document.addEventListener("DOMContentLoaded", restoreActiveClass);
+
+	function validatePhone() {
+		let phoneInput = document.getElementById("input_phone");
+		let errorMsg = document.getElementById("phone_error");
+		let submitBtn = document.getElementById("submitBtn");
+		
+		let phonePattern = /^[89]\d{7}$/; // Starts with 8 or 9 and has 8 digits
+		
+		if (!phonePattern.test(phoneInput.value)) {
+			errorMsg.style.display = "block";
+			submitBtn.disabled = true;
+		} else {
+			errorMsg.style.display = "none";
+			submitBtn.disabled = false;
+		}
+	}
+	function validateEmail() {
+		let emailInput = document.getElementById("input_email");
+		let errorMsg = document.getElementById("email_error");
+		let submitBtn = document.getElementById("submitBtn");
+
+		// Email validation pattern
+		let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+		if (!emailPattern.test(emailInput.value)) {
+			errorMsg.style.display = "block";
+			submitBtn.disabled = true;
+		} else {
+			errorMsg.style.display = "none";
+			submitBtn.disabled = false;
+		}
+	}
+    
     const names = [
         "Emily Tan Wei Ling",
         "Brandon Ng Jia Hao",
@@ -212,56 +416,14 @@
 
     // Initial call to show the first popup immediately
     showPopup();
-</script>
-<!-- BOOTSTRAP SCRIPT -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 
-<script>
     let currentStep = 1;
     let totalSteps = 8;
-
-    function showStep(step) {
-        if (step < 1 || step > totalSteps) return; // Prevent going out of bounds
-        currentStep = step;
-        document.querySelectorAll('[id^="step"]').forEach(stepDiv => {
-            stepDiv.style.display = 'none';
-        });
-        document.getElementById('step' + step).style.display = 'block';
-        updateProgressBar(step);
-    }
-
     function updateProgressBar(step) {
         let progress = (step / totalSteps) * 100;
         document.getElementById('progress-bar').style.width = progress + '%';
     }
-
-    document.querySelectorAll('.step-option').forEach(option => {
-        option.addEventListener('click', function() {
-            let step = parseInt(this.getAttribute('data-step'));
-            if (step < totalSteps) {
-                showStep(step + 1);
-            }
-        });
-    });
-</script>
-
-<script defer>
-document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(function() {
-    const phoneNumberInput = document.getElementById("form_field");
-    phoneNumberInput.addEventListener("input", function() {
-      let phoneNumber = this.value.replace(/\D/g, ''); // Remove non-numeric characters
-      phoneNumber = phoneNumber.slice(0, 8); // Limit to 8 digits
-      this.value = phoneNumber; // Update the input value
-      // Check if the first digit is 8 or 9, and the length is 8 digits
-      if (phoneNumber.length === 8 && (phoneNumber.startsWith('8') || phoneNumber.startsWith('9'))) {
-        this.setCustomValidity(''); // Clear any previous error message
-      } else {
-        this.setCustomValidity('Please enter a valid 8-digit phone number starting with 8 or 9.');
-      }
-    });
-  }, 1000);
-});
 </script>
 
 </body>
