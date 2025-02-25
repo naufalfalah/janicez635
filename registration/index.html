@@ -60,7 +60,7 @@
                                         <input type="radio" name="citizenship" value="All others are PR or Citizen"> Yes, at least one Singapore Citizen and all others are either Permanent Residents or Citizens
                                     </label>
                                     <label class="step-option" data-step="2">
-                                        <input type="radio" name="citizenship" value="No Singapore Citizen or PR"> No, no Singapore Citizens or Permanent Residents
+                                        <input type="radio" name="citizenship" value="No Singapore Citizen or PR"> No, not a Singapore Citizens or Permanent Residents
                                     </label>
                                 </div>
                                 <button class="btn btn-secondary mt-3" onclick="showStep1()">Previous</button>
@@ -151,14 +151,23 @@
                             <div id="step8" style="display: none;">
                                 <h2>Contact Information</h2>
                                 <p>Please enter your contact details</p>
-                                <label>Full Name</label>
-                                <input type="text" name="name" id="input_name" data-id="name" class="form-control" placeholder="Enter your full name" required>
+                                
+								<div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" name="name" id="input_name" class="form-control" placeholder="Enter your full name" required>
+                                </div>
 
-                                <label>Phone Number</label>
-                                <input type="tel" name="phone" id="input_phone" data-id="phone" class="form-control" placeholder="+65" maxlength="8" oninput="validatePhone()" required>
+								<div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" name="phone" id="input_phone" class="form-control" placeholder="+65" maxlength="8" oninput="validatePhone()" required>
+                                    <small id="phone_error" style="color: red; display: none;">Phone number should start with 9 or 8 and must be 8 digits long.</small>
+                                </div>
 
-                                <label>Email Address</label>
-                                <input type="email" name="email" id="input_email" data-id="email" class="form-control" placeholder="Enter your email" oninput="validateEmail()" required>
+                                    <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" name="email" id="input_email" class="form-control" placeholder="Enter your email" oninput="validateEmail()" required>
+                                    <small id="email_error" style="color: red; display: none;">Please enter a valid email address.</small>
+                                </div>
 
                                 <button type="button" class="btn btn-secondary mt-3" onclick="showStep7()">Previous</button>
                                 <button type="submit" class="btn btn-primary mt-3" id="submitBtn" onclick="submitForm()" disabled>Submit</button>
@@ -251,8 +260,6 @@
         updateProgressBar(8)
 	}
 
-
-
 	document.querySelectorAll('input[name="option"]').forEach(radio => {
 		radio.addEventListener('change', () => {
 			document.getElementById('nextBtn1').disabled = false;
@@ -288,12 +295,12 @@
 			document.getElementById('nextBtn6').disabled = false;
 		});
 	});
+
 	document.querySelectorAll('input[name="private_property"]').forEach(radio => {
 		radio.addEventListener('change', () => {
 			document.getElementById('nextBtn7').disabled = false;
 		});
 	});
-
 
 	document.querySelectorAll('input[name="first_applications"]').forEach(radio => {
         radio.addEventListener('change', () => {
@@ -362,6 +369,7 @@
 			submitBtn.disabled = false;
 		}
 	}
+
 	function validateEmail() {
 		let emailInput = document.getElementById("input_email");
 		let errorMsg = document.getElementById("email_error");
@@ -417,7 +425,6 @@
     // Initial call to show the first popup immediately
     showPopup();
     
-
     let currentStep = 1;
     let totalSteps = 8;
     function updateProgressBar(step) {
