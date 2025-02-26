@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apeal</title>
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+        <div class="main-wrapper">
+            <div class="banner_section" id="banner"
+                style="background-image: url(banner-bg.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                <div class="banner-overlay">
+                    <div class="banner_inner-main">
+                        <div class="container">
+                            <div class="animated-box">
+                                <p class="animated-tex">🎉 Don't leave! We go you a FREE e-book that might be helpful in your property finding journey! 🎉</p>
+                            </div>
+                            <div class="row row-cols-lg-2 row-cols-md-2 row-cols-1">
+                                <div class="col">
+                                    <div class="banner-columns-content-wrapper">
+                                        <!-- <h1>We Have Assessed Your Status</h1> -->
+                                        <p>We have assessed your EC eligibility, and unfortunately, it seems you might not currently qualify for an EC purchase. However, based on your assessment, you might be eligible to seek an appeal. Our team will contact you to discuss the possibility of an appeal and guide you through the process. Meanwhile, here are the top 5 affordable condos for you to consider as alternatives.</p>
+                                        <div class="check-list">
+                                            <h2>Here’s what we’ve done for you</h2>
+                                            <div class="list-type">
+                                                <div class="list-icon"><img src="check-mark.png" alt=""></div>
+                                                <div class="lit-text">
+                                                    <p>Top 5 Affordable Condo Alternatives – Since you
+                                                        might not qualify for an EC, we’ve curated a list of the best
+                                                        budget-friendly private condos for you.</p>
+                                                </div>
+                                            </div>
+                                            <div class="list-type">
+                                                <div class="list-icon"><img src="check-mark.png" alt=""></div>
+                                                <div class="lit-text">
+                                                    <p>Potential Appeal Option – Based on your
+                                                        assessment, you may still have a chance to appeal. Our team will
+                                                        reach out to discuss the next steps.</p>
+                                                </div>
+                                            </div>
+                                            <div class="list-type">
+                                                <div class="list-icon"><img src="check-mark.png" alt=""></div>
+                                                <div class="lit-text">
+                                                    <p>Expert Guidance – We’re here to help! If you need
+                                                        further clarification or assistance, our experts are ready to
+                                                        guide
+                                                        you through your options.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="members-wrapper">
+                                            <!-- <div class="member-img">
+                                                <img src="members.svg" alt="">
+                                                <p class="small-size">Research By EZiD’s Own In-House Reno Experts</p>
+
+                                            </div> -->
+                                            <a href="../singmap-appeal-mop.html" class="updated-btn">Get the Download the Ebook!</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="banner-left-image">
+                                        <img src="appeal.png" alt="">
+                                    </div>
+                                    <!-- <div class="floating-btn">
+                                        <div class="floatin-btn-img">
+                                            <img src="https://i.ibb.co/Pv8RktB5/user.png" alt="">
+                                        </div>
+                                        <div class="floatin-btn-content">
+                                            <h3>Bradon Ng</h3>
+                                            <p>Jia Hao submitted recently</p>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="popup-container">
+    <div class="popup">
+        <div class="user-icon">
+            <img src="https://i.ibb.co/GfXy149N/pixelcut-export.png" alt="User Icon">
+        </div>
+        <div class="popup-content"></div>
+    </div>
+</div>
+
+<!-- Popup -->
+<script>
+    const names = [
+        "Emily Tan Wei Ling",
+        "Brandon Ng Jia Hao",
+        "Siti Nur Aisyah Binti Ahmad",
+        "Darren Lim Xin Rui",
+        "Nurul Izzati Binti Hassan",
+        "Rachel Wong Yi Xuan",
+        "Muhammad Faris Bin Zulkifli",
+        "Sophia Lee Mei Zhen",
+        "Hafiz Rahman Bin Ismail",
+        "Chloe Cheng Yu Xuan"
+    ];
+
+    let currentIndex = 0;
+
+    function showPopup() {
+        const popupContent = document.querySelector('.popup-content');
+        const name = names[currentIndex];
+        // Only show the name with 'submitted recently' text
+        popupContent.innerHTML = `${name}<br> just submitted recently`;
+
+        // Show the popup
+        const popup = document.querySelector('.popup');
+        popup.style.opacity = '1';
+
+        // Hide the popup after 5 seconds
+        setTimeout(() => {
+            popup.style.opacity = '0';
+            currentIndex = (currentIndex + 1) % names.length; // Move to the next name
+        }, 5000);
+    }
+
+    // Start showing popups every 10 seconds
+    setInterval(showPopup, 10000); // Every 10 seconds (5 seconds display + 5 seconds wait)
+
+    // Initial call to show the first popup immediately
+    showPopup();
+</script>
+
+</body>
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</html>
