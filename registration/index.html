@@ -12,6 +12,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 		integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .form-control {
+            background-color: white !important;
+            border: 2px black !important;
+        }
+        .step-title {
+            font-size: 38px !important;
+        }
+        .step-option {
+            font-size: 14px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,10 +33,10 @@
             <div class="col-lg-6 custom-css">
                 <div class="tabs-wrapper">
                     <div class="container p-0" id="form-container">
-                        <form action="../submit.php" id="myForm" method="POST">
+                        <form action="https://janicez635.sg-host.com/registration/submit.php" id="myForm" method="POST">
                             <!-- Steps -->
                             <div id="step1">
-                                <h2>Household Scheme</h2>
+                                <h2 class="step-title">Household Scheme</h2>
                                 <p>Who will be included in your EC purchase?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="1">
@@ -46,11 +58,11 @@
                                         <input type="radio" name="option" value="Yourself + orphaned sibling(s)"> Yourself + orphaned sibling(s)
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" id="nextBtn1" onclick="showStep2()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn1" onclick="showStep2()" disabled>Next</button>
                             </div>
 
                             <div id="step2" style="display: none;">
-                                <h2>Citizenship</h2>
+                                <h2 class="step-title">Citizenship</h2>
                                 <p>Does your household include a Singapore Citizen?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="2">
@@ -63,12 +75,12 @@
                                         <input type="radio" name="citizenship" value="No Singapore Citizen or PR"> No, not a Singapore Citizens or Permanent Residents
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep1()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn2" onclick="showStep3()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep1()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn2" onclick="showStep3()" disabled>Next</button>
                             </div>
 
                             <div id="step3" style="display: none;">
-                                <h2>Age Requirement</h2>
+                                <h2 class="step-title">Age Requirement</h2>
                                 <p>Are you and/or your co-applicants of eligible age?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="3">
@@ -81,12 +93,12 @@
                                         <input type="radio" name="age" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep2()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn3" onclick="showStep4()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep2()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn3" onclick="showStep4()" disabled>Next</button>
                             </div>
 
                             <div id="step4" style="display: none;">
-                                <h2>Monthly Household Income</h2>
+                                <h2 class="step-title">Monthly Household Income</h2>
                                 <p>Is your combined household income below $16,000?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="4">
@@ -96,12 +108,12 @@
                                         <input type="radio" name="income" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep3()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn4" onclick="showStep5()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep3()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn4" onclick="showStep5()" disabled>Next</button>
                             </div>
 
                             <div id="step5" style="display: none;">
-                                <h2>HDB Ownership Status</h2>
+                                <h2 class="step-title">HDB Ownership Status</h2>
                                 <p>Do you or any co-applicants currently own an HDB flat?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="5">
@@ -114,12 +126,12 @@
                                         <input type="radio" name="hdb" value="Still within MOP"> Yes, still within MOP
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep4()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn5" onclick="showStep6()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep4()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn5" onclick="showStep6()" disabled>Next</button>
                             </div>
 
                             <div id="step6" style="display: none;">
-                                <h2>Private Property Ownership in the Last 30 Months</h2>
+                                <h2 class="step-title">Private Property Ownership in the Last 30 Months</h2>
                                 <p>Have you or any co-applicants owned or disposed of any private property in the past 30 months?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="6">
@@ -129,12 +141,12 @@
                                         <input type="radio" name="private_property" value="No"> No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep5()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn6" onclick="showStep7()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep5()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn6" onclick="showStep7()" disabled>Next</button>
                             </div>
 
                             <div id="step7" style="display: none;">
-                                <h2>First-Time Applicant</h2>
+                                <h2 class="step-title">First-Time Applicant</h2>
                                 <p>Is this your first application for an HDB/EC property?</p>
                                 <div class="radio-group">
                                     <label class="step-option" data-step="7">
@@ -144,33 +156,33 @@
                                         <input type="radio" name="first_time" value="No">No
                                     </label>
                                 </div>
-                                <button class="btn btn-secondary mt-3" onclick="showStep6()">Previous</button>
-                                <button class="btn btn-secondary mt-3" id="nextBtn7" onclick="showStep8()" disabled>Next</button>
+                                <button type="button" class="btn btn-secondary mt-3" onclick="showStep6()">Previous</button>
+                                <button type="button" class="btn btn-secondary mt-3" id="nextBtn7" onclick="showStep8()" disabled>Next</button>
                             </div>
 
                             <div id="step8" style="display: none;">
-                                <h2>Contact Information</h2>
+                                <h2 class="step-title">Contact Information</h2>
                                 <p>Please enter your contact details</p>
                                 
 								<div class="form-group">
-                                    <label>Full Name</label>
-                                    <input type="text" name="name" id="input_name" class="form-control" placeholder="Enter your full name" required>
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" name="name" id="input_name" class="form-control" placeholder="Enter your full name">
                                 </div>
 
 								<div class="form-group">
-                                    <label>Phone Number</label>
-                                    <input type="tel" name="phone" id="input_phone" class="form-control" placeholder="+65" maxlength="8" oninput="validatePhone()" required>
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" name="phone" id="input_phone" class="form-control" placeholder="+65" maxlength="8" oninput="validatePhone()">
                                     <small id="phone_error" style="color: red; display: none;">Phone number should start with 9 or 8 and must be 8 digits long.</small>
                                 </div>
 
                                     <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input type="email" name="email" id="input_email" class="form-control" placeholder="Enter your email" oninput="validateEmail()" required>
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" name="email" id="input_email" class="form-control" placeholder="Enter your email" oninput="validateEmail()">
                                     <small id="email_error" style="color: red; display: none;">Please enter a valid email address.</small>
                                 </div>
 
                                 <button type="button" class="btn btn-secondary mt-3" onclick="showStep7()">Previous</button>
-                                <button type="submit" class="btn btn-primary mt-3" id="submitBtn" onclick="submitForm()" disabled>Submit</button>
+                                <button type="submit" class="btn btn-primary mt-3" id="submitBtn" disabled>Submit</button>
                             </div>
 
                             <!-- Progress Bar -->
@@ -183,7 +195,7 @@
             </div>
             <div class="col-lg-6 p-0">
                 <div class="image-wrapper">
-                    <img src="bg.png">
+                    <img src="bg.png" style="background-size: cover; background-position: top;">
                 </div>
             </div>
         </div>
@@ -257,6 +269,7 @@
 	function showStep8() {
 		hideAllSteps();
 		document.getElementById('step8').style.display = 'block';
+        checkSubmit();
         updateProgressBar(8)
 	}
 
@@ -296,31 +309,17 @@
 		});
 	});
 
-	document.querySelectorAll('input[name="private_property"]').forEach(radio => {
+	document.querySelectorAll('input[name="first_time"]').forEach(radio => {
 		radio.addEventListener('change', () => {
 			document.getElementById('nextBtn7').disabled = false;
 		});
 	});
 
-	document.querySelectorAll('input[name="first_applications"]').forEach(radio => {
-        radio.addEventListener('change', () => {
-            document.getElementById('nextBtn7').disabled = false;
-        });
-    });
-
-    document.querySelectorAll('#step8 input').forEach(input => {
+    document.querySelectorAll('#step8 .form-group input').forEach(input => {
         input.addEventListener('input', () => {
-            let name = document.getElementById('name').value.trim();
-            let email = document.getElementById('email').value.trim();
-            let address = document.getElementById('address').value.trim();
-            document.getElementById('submitBtn').disabled = !(name && email && address);
+            checkSubmit();
         });
     });
-
-	function submitForm() {
-	//	window.location.replace('../thank-you/index.html')
-	//	alert('form Submited')
-	}
     
 	document.querySelectorAll('.radio-group label').forEach(label => {
 		label.addEventListener('click', function () {
@@ -354,10 +353,19 @@
 	// Call restoreActiveClass() when going back
 	document.addEventListener("DOMContentLoaded", restoreActiveClass);
 
+    function checkSubmit() {
+        let name = document.getElementById('input_name').value.trim();
+        let phone = document.getElementById('input_phone').value.trim();
+        let email = document.getElementById('input_email').value.trim();
+        document.getElementById('submitBtn').disabled = !(name && phone && email);
+    }
+
 	function validatePhone() {
 		let phoneInput = document.getElementById("input_phone");
 		let errorMsg = document.getElementById("phone_error");
 		let submitBtn = document.getElementById("submitBtn");
+
+		phoneInput.value = phoneInput.value.replace(/\D/g, '');
 		
 		let phonePattern = /^[89]\d{7}$/; // Starts with 8 or 9 and has 8 digits
 		
