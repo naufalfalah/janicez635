@@ -1,11 +1,29 @@
 <?php
 
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); 
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+function safe_redirect($url) {
+    if (!headers_sent()) {
+        header("Location: https://janicez635.sg-host.com/" . $url);
+        exit;
+    } else {
+        die("Cannot redirect, headers already sent.");
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    safe_redirect("registration/");
+    exit;
+}
+
 // Database config
 $dbConfig = [
     'host' => 'localhost',
-    'user' => 'root',
-    'pass' => 'root',
-    'name' => 'jj_janices633'
+    'user' => 'u4sdrnhrckqnh',
+    'pass' => 'pykfdufecu4b',
+    'name' => 'dbnua7p3kox1va'
 ];
 
 // MySQL connection
@@ -27,10 +45,6 @@ $name = htmlspecialchars($_POST['name']) ?? null;
 $phone = htmlspecialchars($_POST['phone']) ?? null;
 $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ?? null;
 
-if (!$email) {
-    die("Invalid email format.");
-}
-
 // SQL Query
 $sql = "INSERT INTO users (household, citizenship, requirement, household_income, ownership_status, private_property_ownership, first_time_applicant, name, email, phone) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -45,21 +59,25 @@ $stmt->close();
 $conn->close();
 
 $msg = '';
+
 switch (true) {
-    case $ownership_status === 'Yes, MOP completed':
-        header("Location: congratulation/");
-        exit;
-    case $ownership_status === 'Yes, still within MOP':
-        header("Location: mop/");
-        exit;
     case $citizenship === 'No, no Singapore Citizens or Permanent Residents' || 
          $requirement === 'No' || 
          $household_income === 'No' || 
          $private_property_ownership === 'Yes':
-        header("Location: appeal/");
+        safe_redirect("discualification/");
+        exit;
+    case $ownership_status === 'Yes, MOP completed':
+        safe_redirect("congratulation/");
+        exit;
+    case $ownership_status === 'Yes, still within MOP':
+        safe_redirect("mop/");
         exit;
     case $ownership_status === 'No, do not own any HDB':
-        header("Location: appeal/");
+        safe_redirect("appeal/");
+        exit;
+    default:
+        safe_redirect("/");
         exit;
 }
 
