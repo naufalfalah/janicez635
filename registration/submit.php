@@ -61,11 +61,11 @@ $conn->close();
 $msg = '';
 
 switch (true) {
-    case $citizenship === 'No, no Singapore Citizens or Permanent Residents' || 
+    case $citizenship === 'No, not Singapore Citizens or Permanent Residents' || 
          $requirement === 'No' || 
          $household_income === 'No' || 
          $private_property_ownership === 'Yes':
-        safe_redirect("discualification/");
+        safe_redirect("disqualification/");
         exit;
     case $ownership_status === 'Yes, MOP completed':
         safe_redirect("congratulation/");
