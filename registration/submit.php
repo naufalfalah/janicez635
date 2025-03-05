@@ -1,5 +1,7 @@
 <?php
 
+require_once 'helper_discord.php';
+
 header("Access-Control-Allow-Origin: *"); 
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); 
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -52,7 +54,26 @@ $sql = "INSERT INTO users (household, citizenship, requirement, household_income
 // Prepare statement
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssssssssss", $household, $citizenship, $requirement, $household_income, $ownership_status, $private_property_ownership, $first_time_applicant, $name, $email, $phone);
-$stmt->execute();
+
+if ($stmt->execute()) {
+    $inserted_id = $stmt->insert_id;
+
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $inserted_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        sendLeadToDiscord($user);
+    } else {
+        die("Error: User not found after insert");
+    }
+} else {
+    die("Error: " . $stmt->error);
+}
 
 // Close connection
 $stmt->close();
